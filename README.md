@@ -1,8 +1,14 @@
-**STATUS**: this machine is currently broken, and we are trying to fix it. Help us.
+**STATUS**: Once TRALICS is compiled locally, this is almost usable. Waiting for Softcover team to decide what should be done about it before adding solution here. Discussion at: https://github.com/softcover/polytexnic/issues/100 
 
-Tests that must pass are placed under `check-install.sh`, to be run in the guest.
+- template book builds correctly.
 
-Failing tests are marked with `FAIL`.
+- softcover_book builds correctly on all formats except PDF where there are encoding errors.
+
+- only 5 unit tests fail
+
+Tests that must pass are placed under `check-install.sh`, to be run in the guest. Failing tests are marked with `FAIL` and where it fails will be noted in the comments.
+
+Once all tests pass, we will also provide a ready `.box` download for end users.
 
 ---
 
@@ -19,7 +25,7 @@ We feel that installing the virtual machine is easier than installing Softcover.
 
 # Install Vagrant
 
-Install [Vagrant](http://www.vagrantup.com/), which will also require you so install a VM provider. [Oracle VirtualBox](https://www.virtualbox.org/) works well for us, and is recommended by Vagrant. 
+Install [Vagrant](http://www.vagrantup.com/), which will also require you so install a VM provider. We officially support [Oracle VirtualBox](https://www.virtualbox.org/), which is free and cross platform.
 
 Vagrant is cross platform and easy to install. For example on Ubuntu 12.04 use:
 
