@@ -67,7 +67,7 @@ Avoid installing Vagrant from the Ubuntu repositories as the versions there are 
 
 It is recommended that you enable hardware virtualization from your BIOS screen, the first screen that appears then you turn the computer on.
 
-# Decide How to Install TeX Live
+# Decide how to install TeX Live
 
 Once Vagrant is installed, you have to decide between:
 
@@ -87,7 +87,7 @@ Once Vagrant is installed, you have to decide between:
 
     Fully automated: you don't have to do anything for now.
 
-# Develop Books
+# Usage
 
 Go to the root of this repository and do:
 
