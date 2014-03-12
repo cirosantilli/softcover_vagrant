@@ -1,14 +1,15 @@
 **STATUS**: Once TRALICS is compiled locally, this is almost usable. Waiting for Softcover team to decide what should be done about it before adding solution here. Discussion at: https://github.com/softcover/polytexnic/issues/100 
 
 - template book builds correctly.
-
 - softcover_book builds correctly on all formats except PDF where there are encoding errors.
-
 - only 5 unit tests fail
 
 Tests that must pass are placed under `check-install.sh`, to be run in the guest. Failing tests are marked with `FAIL` and where it fails will be noted in the comments.
 
-Once all tests pass, we will also provide a ready `.box` download for end users.
+Once all tests pass, we will:
+
+- provide a ready `.box` download for end users
+- remove this message
 
 ---
 
@@ -31,7 +32,7 @@ In the SSH:
     cd example_book
     softcover build
 
-Your book is ready under `projects/` in the host.
+Your book is ready under the `projects/` directory in the host.
 
 # I am new to Vagrant
 
