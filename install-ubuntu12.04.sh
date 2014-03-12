@@ -64,3 +64,7 @@ source ~/.rvm/scripts/rvm
 rvm install 2.1.1
 
 gem install softcover
+
+echo '
+# Added by Softcover
+cd /vagrant/projects' >> ~/.bashrc
