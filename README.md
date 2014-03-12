@@ -14,6 +14,27 @@ Once all tests pass, we will also provide a ready `.box` download for end users.
 
 This repository allows you to use Softcover via a Vagrant virtual machine.
 
+# I already know Vagrant
+
+    git clone https://github.com/cirosantilli/softcover_vagrant
+    cd softcover_vagrant
+    # OPTIONAL BUT MUCH FASTER: download Tex Live ISO by torrent
+    # and put it in the current directory with exact name: texlive2013.iso
+    #wget -O texlive2013.iso.torrent https://www.tug.org/texlive/files/texlive2013.iso.torrent
+    vagrant up
+    vagrant ssh
+
+In the SSH:
+
+    cd /vagrant/projects
+    softcover new example_book
+    cd example_book
+    softcover build
+
+Your book is ready under `projects/` in the host.
+
+# I am new to Vagrant
+
 A virtual machine will install another OS inside of your OS, which you can access via SSH. The main OS is called the *host*, while the one inside it is called the *guest*.
 
 The advantage of using a virtual machine is that it makes it easier to install Softcover for usage and development as all you have to do is to:
