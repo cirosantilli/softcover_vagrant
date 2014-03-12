@@ -13,7 +13,7 @@ Once all tests pass, we will:
 
 ---
 
-This repository allows you to use Softcover via a Vagrant virtual machine.
+Install [Softcover](https://github.com/softcover/softcover) easily for usage and development via a Vagrant virtual machine.
 
 # I already know Vagrant
 
@@ -32,7 +32,7 @@ In the SSH:
     cd example_book
     softcover build
 
-Your book is ready under the `projects/` directory in the host.
+Your book is ready under the `projects/` subdirectory in the host.
 
 # I am new to Vagrant
 
@@ -132,7 +132,13 @@ in this `Vagrantfile` to set it to another value.
 
 You can also use this repository to develop Softcover itself.
 
-To do that, go inside each `project/projectname` that you with to develop with and create a `Gemfile` like:
+`cd` to the root of this repository and clone Softcover:
+
+    git clone https://github.com/softcover/softcover
+
+It is already gitignored.
+
+For interactive tests, add the following Gemfile to your `project/NAME` directory:
 
     cat <<EOF > Gemfile
     source 'https://rubygems.org'
@@ -140,11 +146,11 @@ To do that, go inside each `project/projectname` that you with to develop with a
     gem 'softcover', :path => '../../softcover'
     EOF
 
-Now, when you want to run test commands, first enter the project directory in the guest, and don't forget to use `bundle exec` as in:
+and don't forget to use `bundle exec` all the time from the guest:
 
     bundle exec softcover build
 
-You can run the unit tests from the guest via:
+Run the unit tests from the guest via:
 
     cd /vagrant/softcover
     bundle install
