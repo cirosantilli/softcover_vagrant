@@ -34,6 +34,11 @@ In the SSH:
 
 Your book is ready under the `projects/` subdirectory in the host.
 
+Next project?
+
+    cd /vagrant/projects
+    softcover new example_book2
+
 # I am new to Vagrant
 
 A virtual machine will install another OS inside of your OS, which you can access via SSH. The main OS is called the *host*, while the one inside it is called the *guest*.
