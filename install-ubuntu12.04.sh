@@ -2,12 +2,10 @@
 
 # Install Softcover and all its dependencies on a clean Ubuntu 12.04.
 # **DO NOT USE** on a non-clean Ubuntu 12.04: may not work or misconfigure your machine.
-# The installation must:
-#
-# - pass all unit tests
-# - correctly compile the softcover_book and the `softcover new` project template.
+# The installation must pass all tests specified under `check-install.sh`.
 
-set -euv
+# u makes some of the sourced scripts fail.
+set -ev
 
 sudo apt-get update
 sudo apt-get install -y calibre curl git imagemagick inkscape libcurl3-dev maven openjdk-7-jre phantomjs zip
@@ -29,9 +27,7 @@ echo '
 # Texlive
 export PATH=$PATH:/usr/local/texlive/2013/bin/'"$(uname -i)"'-linux
 export MANPATH=$MANPATH:/usr/local/texlive/2013/texmf-dist/doc/man
-export INFOPATH=$INFOPATH:/usr/local/texlive/2013/texmf-dist/doc/info
-' >> ~/.profile
-source ~/.profile
+export INFOPATH=$INFOPATH:/usr/local/texlive/2013/texmf-dist/doc/info' >> ~/.profile
 
 # Epubcheck
 cd
@@ -52,15 +48,15 @@ rm -rf kindlegen
 # Nodejs. Requires git.
 VERSION="0.10.26"
 curl https://raw.github.com/creationix/nvm/master/install.sh | sh
-source ~/.nvm/nvm.sh
-echo "source ~/.nvm/nvm.sh
+. ~/.nvm/nvm.sh
+nvm install "$VERSION"
+echo ". ~/.nvm/nvm.sh
 nvm use "$VERSION" &>/dev/null
 " >> ~/.bashrc
-nvm install "$VERSION"
 
-# Ruby
+# Ruby: http://rvm.io/integration/vagrant
 curl -L https://get.rvm.io | bash -s stable
-source ~/.rvm/scripts/rvm
+. ~/.rvm/scripts/rvm
 rvm install 2.1.1
 
 gem install softcover
