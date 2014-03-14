@@ -7,10 +7,17 @@ cpus = '1'
 memory = '1024'
 
 hostname = 'softcover'
-
-Vagrant.configure("2") do |config|
-  config.vm.box = "precise32"
-  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+suffix = ''
+Vagrant.configure('2') do |config|
+  if ENV['VAGRANT_NEW_BOX'] == 'true'
+    config.vm.box = 'precise32'
+    config.vm.box_url = 'http://files.vagrantup.com/precise32.box'
+    config.vm.provision :shell, privileged: false, path: 'provision.sh'
+    suffix = '_dev'
+  else
+    config.vm.box = 'softcover_vagrant'
+    config.vm.box_url = 'http://downloads.sourceforge.net/project/softcovervagrant/precise32_softcover.box'
+  end
   config.vm.hostname = hostname
   config.vm.network :forwarded_port, guest: 4000, host: 4000
   config.vm.provider "virtualbox" do |v|
@@ -18,11 +25,11 @@ Vagrant.configure("2") do |config|
       'modifyvm', :id,
       '--cpus', cpus,
       '--memory', memory,
-      '--name', hostname + '_vagrant'
+      '--name', (hostname + '_vagrant' + suffix)
     ]
     if cpus.to_i > 1
       v.customize ["modifyvm", :id, "--ioapic", "on"]
     end
   end
-  config.vm.provision :shell, privileged: false, path: 'install-ubuntu12.04.sh'
+  config.vm.provision :shell, privileged: false, path: 'provision-prepackaged.sh'
 end

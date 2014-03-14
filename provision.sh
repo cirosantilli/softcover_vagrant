@@ -2,7 +2,9 @@
 
 # Install Softcover and all its dependencies on a clean Ubuntu 12.04.
 # **DO NOT USE** on a non-clean Ubuntu 12.04: may not work or misconfigure your machine.
-# The installation must pass all tests specified under `check-install.sh`.
+#
+# Only included are steps used on the prepackaged box.
+# Steps missing from the prepackage box will be put under `provision-prepackaged.sh`.
 
 # u makes some of the sourced scripts fail.
 set -ev

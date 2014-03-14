@@ -1,27 +1,21 @@
-**STATUS**: Once TRALICS is compiled locally, this is almost usable. Waiting for Softcover team to decide what should be done about it before adding solution here. Discussion at: https://github.com/softcover/polytexnic/issues/100 
+**STATUS**: 
 
-- template book builds correctly.
-- softcover_book builds correctly on all formats except PDF where there are encoding errors.
+- `softcover new` template book builds correctly
+- softcover_book builds correctly on all formats except PDF where it raises an encoding error exception.
 - only 5 unit tests fail
 
 Tests that must pass are placed under `check-install.sh`, to be run in the guest. Failing tests are marked with `FAIL` and where it fails will be noted in the comments.
 
-Once all tests pass, we will:
-
-- provide a ready `.box` download for end users
-- remove this message
+We will remove this message once all tests pass.
 
 ---
 
-Install [Softcover](https://github.com/softcover/softcover) easily for usage and development via a Vagrant virtual machine.
+Install [Softcover](https://github.com/softcover/softcover) easily for usage and development via an Ubuntu 12.04 Vagrant virtual machine.
 
 # I already know Vagrant
 
     git clone https://github.com/cirosantilli/softcover_vagrant
     cd softcover_vagrant
-    # OPTIONAL BUT MUCH FASTER: download Tex Live ISO by torrent
-    # and put it in the current directory with exact name: texlive2013.iso
-    #wget -O texlive2013.iso.torrent https://www.tug.org/texlive/files/texlive2013.iso.torrent
     vagrant up
     vagrant ssh
 
@@ -72,26 +66,6 @@ Avoid installing Vagrant from the Ubuntu repositories as the versions there are 
 
 It is recommended that you enable hardware virtualization from your BIOS screen, the first screen that appears then you turn the computer on.
 
-# Decide how to install TeX Live
-
-Once Vagrant is installed, you have to decide between:
-
-- downloading TeX Live via torrent on the host.
-
-    Not automated because of torrent availability fluctuations, but potentially *much* faster than a CTAN download (20 minutes vs 4 hours).
-
-    Just put the ISO on the root of this repository and rename it to *exactly*: `texlive2013.iso`
-
-    The `.torrent` can be found at:
-
-        wget -O texlive2013.iso.torrent https://www.tug.org/texlive/files/texlive2013.iso.torrent
-
-- downloading TeX Live from a CTAN mirror.
-
-    Surefire, but will take around 4 hours.
-
-    Fully automated: you don't have to do anything for now.
-
 # Usage
 
 Go to the root of this repository and do:
@@ -100,17 +74,11 @@ Go to the root of this repository and do:
 
 This starts up the Ubuntu 12.04 guest virtual machine.
 
-The first time you do `vagrant up` the command will take a long time to execute since it is installing Softcover and all of its dependencies.
-
-If the installation fails because of Internet connection problems, try again via: `vagrant provision`.
+The first time you do `vagrant up` the command will take a long time to execute (~30 minutes) since it will download and install the virtual machine.
 
 Once the machine is up, ssh into the guest with:
 
     vagrant ssh
-
-First check that everything is installed correctly:
-
-    /vagrant/check-install.sh
 
 To create a new book simply to the following from inside the guest:
 
@@ -137,7 +105,7 @@ in this `Vagrantfile` to set it to another value.
 
 You can also use this repository to develop Softcover itself.
 
-`cd` to the root of this repository and clone Softcover:
+From the host, `cd` to the root of this repository and clone Softcover:
 
     git clone https://github.com/softcover/softcover
 
@@ -160,3 +128,7 @@ Run the unit tests from the guest via:
     cd /vagrant/softcover
     bundle install
     bundle exec rake spec
+
+#Develop Softcover Vagrant
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for more info on how to contribute to this project.
