@@ -19,7 +19,7 @@ Vagrant.configure('2') do |config|
     config.vm.box_url = 'http://downloads.sourceforge.net/project/softcovervagrant/precise32_softcover.box'
   end
   config.vm.hostname = hostname
-  config.vm.network :forwarded_port, guest: 4000, host: 4000
+  config.vm.network :forwarded_port, guest: 4000, host: 4001
   config.vm.provider "virtualbox" do |v|
     v.customize [
       'modifyvm', :id,

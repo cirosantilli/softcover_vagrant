@@ -10,7 +10,7 @@
 set -ev
 
 sudo apt-get update
-sudo apt-get install -y calibre curl git imagemagick inkscape libcurl3-dev maven openjdk-7-jre phantomjs zip
+sudo apt-get install -y calibre curl git imagemagick inkscape libcurl3-dev maven openjdk-7-jre zip
 
 # TeX Live 2013.
 # 2009 is not enough because of missing .stys for the softcover_book.
@@ -33,6 +33,8 @@ export INFOPATH=$INFOPATH:/usr/local/texlive/2013/texmf-dist/doc/info' >> ~/.pro
 
 # Epubcheck
 cd
+mkdir -p bin
+cd bin
 wget https://github.com/IDPF/epubcheck/releases/download/v3.0/epubcheck-3.0.zip
 unzip epubcheck-3.0.zip
 rm epubcheck-3.0.zip
@@ -62,6 +64,15 @@ curl -L https://get.rvm.io | bash -s stable
 rvm install 2.1.1
 
 gem install softcover
+
+# PhantomJS. Ubuntu repositories are too outdated.
+cd /usr/local/share
+arch="$(uname -i)"
+sudo wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-$arch.tar.bz2
+sudo tar xjf phantomjs-1.9.7-linux-$arch.tar.bz2
+sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-$arch/bin/phantomjs /usr/local/share/phantomjs
+sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-$arch/bin/phantomjs /usr/local/bin/phantomjs
+sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-$arch/bin/phantomjs /usr/bin/phantomjs
 
 echo '
 # Added by Softcover
