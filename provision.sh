@@ -51,7 +51,7 @@ rm -rf kindlegen
 
 # Nodejs. Requires git.
 VERSION="0.10.26"
-curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+curl https://raw.githubusercontent.com/creationix/nvm/v0.7.0/install.sh | sh
 . ~/.nvm/nvm.sh
 nvm install "$VERSION"
 echo ". ~/.nvm/nvm.sh
