@@ -1,18 +1,17 @@
-**STATUS**: 
+# Softcover Vagrant
 
-- `softcover new` template book builds correctly
-- softcover_book builds correctly on all formats except PDF where it raises an encoding error exception.
-- only 5 unit tests fail
+Ubuntu 12.04 64 bit Vagrant virtual machine for [Softcover](https://github.com/softcover/softcover) usage and development.
 
-Tests that must pass are placed under `check-install.sh`, to be run in the guest. Failing tests are marked with `FAIL` and where it fails will be noted in the comments.
+**STATUS**:
 
-We will remove this message once all tests pass.
+The `softcover new` template and `softcover_book` build correctly on all formats.
 
----
+Exactly 3 unit tests fail, all of which are Softcover bugs:
 
-Install [Softcover](https://github.com/softcover/softcover) easily for usage and development via an Ubuntu 12.04 Vagrant virtual machine.
+- <https://github.com/softcover/softcover/issues/102>
+- <https://github.com/softcover/softcover/pull/103>
 
-# I already know Vagrant
+## I already know Vagrant
 
     git clone https://github.com/cirosantilli/softcover_vagrant
     cd softcover_vagrant
@@ -25,15 +24,16 @@ In the SSH:
     softcover new example_book
     cd example_book
     softcover build
+    softcover serve
 
-Your book is ready under the `projects/` subdirectory in the host.
+Your book is ready under the `projects/example_book` subdirectory in the host, and can be previewed at `localhost:4000`.
 
 Next project?
 
     cd /vagrant/projects
     softcover new example_book2
 
-# I am new to Vagrant
+## I am new to Vagrant
 
 A virtual machine will install another OS inside of your OS, which you can access via SSH. The main OS is called the *host*, while the one inside it is called the *guest*.
 
@@ -44,7 +44,7 @@ The advantage of using a virtual machine is that it makes it easier to install S
 
 We feel that installing the virtual machine is easier than installing Softcover.
 
-# Install Vagrant
+### Install Vagrant
 
 Install [Vagrant](http://www.vagrantup.com/), which will also require you so install a VM provider. We officially support [Oracle VirtualBox](https://www.virtualbox.org/), which is free and cross platform.
 
@@ -66,7 +66,7 @@ Avoid installing Vagrant from the Ubuntu repositories as the versions there are 
 
 It is recommended that you enable hardware virtualization from your BIOS screen, the first screen that appears then you turn the computer on.
 
-# Usage
+### Usage
 
 Go to the root of this repository and do:
 
@@ -101,7 +101,7 @@ This means that port 4000 must be free or the virtual machine won't boot. If por
 
 in this `Vagrantfile` to set it to another value.
 
-# Develop Softcover
+## Develop Softcover
 
 You can also use this repository to develop Softcover itself.
 
@@ -129,6 +129,6 @@ Run the unit tests from the guest via:
     bundle install
     bundle exec rake spec
 
-#Develop Softcover Vagrant
+## Develop this VM
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more info on how to contribute to this project.

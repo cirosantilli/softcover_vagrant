@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-vagrant package --base softcover_vagrant --output precise32_softcover.box
+output="precise64_softcover.box"
+vagrant package --base softcover_vagrant_dev --output "$output"
+echo "Output at: $output"

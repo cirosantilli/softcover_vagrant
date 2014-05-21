@@ -1,43 +1,45 @@
 #!/usr/bin/env bash
 
-set -euv
+set -v
+# TODO replace by euv once Softcover bugs are fixed:
+#set -euv
 
-# This should be run from inside the guest.
-# All commands must exit with status 0.
-# You must manually check outputs where applicable to see if they are OK.
+tmpdir="/vagrant/tmp"
 
 # Binary dependencies.
 softcover check
 
-# Unit tests. FAIL
-cd /vagrant/softcover
+mkdir -p "$tmpdir"
+
+# Unit tests.
+cd "$tmpdir"
+if [ -d softcover ]; then
+  cd softcover_book
+  git pull -u origin master
+else
+  git clone https://github.com/softcover/softcover
+  cd softcover
+fi
 bundle install
 bundle exec rake spec
 
-# ERRORS:
-#rspec /vagrant/softcover/spec/app_spec.rb:29 # Softcover::App ordinary book GET chapter
-#rspec /vagrant/softcover/spec/builders/epub_spec.rb:15 # Softcover::Builders::Epub should be valid
-#rspec /vagrant/softcover/spec/builders/epub_spec.rb:155 # Softcover::Builders::Epub OEBPS HTML generation should create math PNGs
-#rspec /vagrant/softcover/spec/builders/epub_spec.rb:191 # Softcover::Builders::Epub for a Markdown book should be valid
-#rspec /vagrant/softcover/spec/builders/pdf_spec.rb:40 # Softcover::Builders::Pdf for a PolyTeX book #build! should prepend the fontsize verbatim declaration for source code
-
 # Build new book template.
-cd /tmp
+cd "$tmpdir"
 softcover new example_book
 cd example_book
 softcover build
-cd ..
-rm -rf example_book
 
-# Build softcover_book. FAIL
-cd /tmp
-git clone https://github.com/softcover/softcover_book
-cd softcover_book
+# Build softcover_book.
+cd "$tmpdir"
+if [ -d softcover_book ]; then
+  cd softcover_book
+  git pull -u origin master
+else
+  git clone https://github.com/softcover/softcover_book
+  cd softcover_book
+fi
 softcover build
-cd ..
-rm -rf softcover_book
 
-# ERRORS: build:pdf
-#/home/vagrant/.rvm/gems/ruby-2.1.1/gems/polytexnic-0.9.2/lib/polytexnic/utils.rb:136:in `gsub!': incompatible character encodings: ISO-8859-1 and UTF-8 (Encoding::CompatibilityError)
-
-echo "ALL TESTS PASSED!"
+# TODO uncomment once Softcover bugs are fixed:
+#echo "Test builds put in: /vagrant/tmp"
+#echo "All tests passed."
