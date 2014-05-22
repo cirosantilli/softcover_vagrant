@@ -63,7 +63,7 @@ curl -L https://get.rvm.io | bash -s stable
 . ~/.rvm/scripts/rvm
 rvm install 2.1.1
 
-gem install softcover
+gem install -v 0.9.17 softcover
 
 # PhantomJS. Ubuntu repositories are too outdated.
 cd /usr/local/share
