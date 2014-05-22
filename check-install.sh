@@ -4,42 +4,34 @@ set -v
 # TODO replace by euv once Softcover bugs are fixed:
 #set -euv
 
-tmpdir="/vagrant/tmp"
+projects_dir="/vagrant/projects"
 
 # Binary dependencies.
 softcover check
 
-mkdir -p "$tmpdir"
-
 # Unit tests.
-cd "$tmpdir"
-if [ -d softcover ]; then
-  cd softcover_book
-  git pull -u origin master
-else
+cd /vagrant
+if [ ! -d softcover ]; then
   git clone https://github.com/softcover/softcover
-  cd softcover
 fi
+cd softcover_book
 bundle install
 bundle exec rake spec
 
+mkdir -p "$projects_dir"
+
 # Build new book template.
-cd "$tmpdir"
+cd "$projects_dir"
 softcover new example_book
 cd example_book
 softcover build
 
 # Build softcover_book.
-cd "$tmpdir"
-if [ -d softcover_book ]; then
-  cd softcover_book
-  git pull -u origin master
-else
+cd "$projects_dir"
+if [ ! -d softcover_book ]; then
   git clone https://github.com/softcover/softcover_book
-  cd softcover_book
 fi
 softcover build
 
 # TODO uncomment once Softcover bugs are fixed:
-#echo "Test builds put in: /vagrant/tmp"
 #echo "All tests passed."

@@ -111,7 +111,7 @@ From the host, `cd` to the root of this repository and clone Softcover:
 
 It is already gitignored.
 
-For interactive tests, add the following Gemfile to your `project/NAME` directory:
+For interactive tests, create the project under `projects` and add following Gemfile to the project's directory:
 
     cat <<EOF > Gemfile
     source 'https://rubygems.org'
