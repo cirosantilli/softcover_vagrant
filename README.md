@@ -9,7 +9,7 @@ The `softcover new` template and `softcover_book` build correctly on all formats
 Exactly 3 unit tests fail, all of which are Softcover bugs:
 
 - <https://github.com/softcover/softcover/issues/102>
-- <https://github.com/softcover/softcover/pull/103>
+- <https://github.com/softcover/softcover/pull/103>. Merged but not yet included here.
 
 ## I already know Vagrant
 
