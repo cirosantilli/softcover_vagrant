@@ -6,7 +6,7 @@
 # Only included are steps used on the prepackaged box.
 # Steps missing from the prepackage box will be put under `provision-prepackaged.sh`.
 
-# u makes some of the sourced scripts fail.
+# eu makes the NVM and RVM source `.` fail.
 set -ev
 
 sudo apt-get update
@@ -52,15 +52,15 @@ rm -rf kindlegen
 # Nodejs. Requires git.
 VERSION="0.10.26"
 curl https://raw.githubusercontent.com/creationix/nvm/v0.7.0/install.sh | sh
-. ~/.nvm/nvm.sh
+. "$HOME/.nvm/nvm.sh"
 nvm install "$VERSION"
-echo ". ~/.nvm/nvm.sh
-nvm use "$VERSION" &>/dev/null
-" >> ~/.bashrc
+echo '. "$HOME/.nvm/nvm.sh"
+nvm use "'"$VERSION"'" &>/dev/null
+' >> ~/.bashrc
 
 # Ruby: http://rvm.io/integration/vagrant
 curl -L https://get.rvm.io | bash -s stable
-. ~/.rvm/scripts/rvm
+. "$HOME/.rvm/scripts/rvm"
 rvm install 2.1.1
 
 gem install -v 0.9.17 softcover
