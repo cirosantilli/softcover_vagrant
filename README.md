@@ -113,8 +113,11 @@ From the host, `cd` to the root of this repository and clone Softcover:
 
 It is already gitignored.
 
-For interactive tests, create the project under `projects` and add following Gemfile to the project's directory:
+For interactive tests, create the project under `projects` using the development version, and add a Gemfile to the project's directory to help you use the development version of Softcover:
 
+    cd projects
+    BUNDLE_GEMFILE=../softcover/Gemfile bundle exec softcover new test
+    cd test
     cat <<EOF > Gemfile
     source 'https://rubygems.org'
     ruby '2.1.1'
