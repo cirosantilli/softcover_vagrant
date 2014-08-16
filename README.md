@@ -18,6 +18,8 @@ Exactly 3 unit tests fail, all of which are Softcover bugs:
     vagrant up
     vagrant ssh
 
+`vagrant up` will take a *long time* the first time you run it (~10 minutes last time I tried) since it is downloading an Ubuntu ISO with TeX Live full installed hosted on SourceForge.
+
 In the SSH:
 
     cd /vagrant/projects
