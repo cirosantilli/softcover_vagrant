@@ -134,6 +134,10 @@ Run the unit tests from the guest via:
     bundle install
     bundle exec rake spec
 
+## Version
+
+This repository is tagged with the same version of Softcover it supports.
+
 ## Develop this VM
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more info on how to contribute to this project.
